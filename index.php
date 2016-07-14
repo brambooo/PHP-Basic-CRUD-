@@ -86,9 +86,66 @@
                     $('#page-content').fadeIn('slow');
                 });
             });
+        }); // end create-product (click)
 
+
+        $('#createProductForm').on('submit', function(e) {
+            e.preventDefault();
+            console.log('test');
+
+            $.ajax({
+                type        : 'POST',
+                url         : 'create_form_handler.php',
+                data        : $(this).serialize(),
+//                        dataType    : 'json'
+            }).done(function(data) {
+                console.log(data);
+            });
         });
-    });
+
+        // Catch data when a product is created when a form was submitted (store that in te database)
+//        $('form#create-product-form').on('submit', function(e) {
+//
+//            e.preventDefault();
+//            console.log('form aangeroepen');
+//
+////            //  stop the form from submitting the normal way and refreshing the page
+////            e.preventDefault();
+////
+////            // show loader image
+////            $('#loader-image').show();
+////
+////            var formData = {
+////              'name'           : $('input[name=name]').val(),
+////              'description'    : $('input[name=description]').val(),
+////              'price'          : $('input[name=price]').val()
+////            };
+////            console.log(formData);
+////
+////            $.ajax({
+////                type:   'POST',         // define the post HTTP type
+////                url:    'create_form.php',    // the url where we want to POST
+////                data:   formData,
+////                dataType: 'json',
+////                success: function(data) {
+////                    // When the POST request is done
+////                    console.log('POST request meegestuurde data: \n');
+////                    console.log(data);
+////                },
+////                error: function(data) {
+////                    console.log('Er ging eits fout');
+////                }
+////            });
+////
+////            e.preventDefault();
+//
+//            // POST data from the form
+////            $.post('create.php', $(this).serialize()).done(function(data) {
+////
+////            });
+//        }); // end create-product-form (on)
+
+    }); // end document (ready)
 
     // functions
     function changePageTitle(pageTitle) {
